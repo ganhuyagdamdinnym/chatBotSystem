@@ -8,8 +8,10 @@ Base_url = "https://api.openweathermap.org/data/2.5/weather"
 with open("./data.json", "r", encoding="utf-8") as f:
     INTENTS = json.load(f)
 
+
 def now_time():
     return datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+
 
 HELP_TEXT = (
     "🧭 Жишээ асуултууд:\n"
@@ -29,18 +31,20 @@ HELP_TEXT = (
     "ℹ️ 'гарах' гэж бичвэл програм дуусна."
 )
 
+
 def normalize(text: str) -> str:
     return " ".join(text.strip().lower().split())
+
 
 def chatbot_response(user_input: str) -> str:
     ui = normalize(user_input)
 
     if ui in ("тусламж", "help", "tuslamj"):
         return HELP_TEXT
-    if ui in ("цаг","tsag","time"):
+    if ui in ("цаг", "tsag", "time"):
         return f"Одоо цаг: {now_time()}"
 
-    if ui in ("цаг агаар", "tsag agaar"):
+    if ui in ("цаг агаар", "tsag agaar", "weather"):
         lat = input("latitude: ")
         lon = input("longitude: ")
 
@@ -73,6 +77,7 @@ def chatbot_response(user_input: str) -> str:
                 return ans(ui) if callable(ans) else ans
 
     return "Уучлаарай, ойлгосонгүй. 'тусламж' гэж бичээд боломжит асуултуудыг үзээрэй."
+
 
 while True:
     user_input = input("Таны асуулт : ")
