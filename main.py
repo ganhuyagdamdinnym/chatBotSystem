@@ -19,7 +19,7 @@ def now_time():
     ]
     now = datetime.datetime.now()
     month_name = months[now.month - 1]
-    return f"{now.year} оны {month_name} сарын {now.day}-ны өдөр, {now.hour} цаг {now.minute} минут"
+    return f"{now.year} оны {month_name} сарын {now.day}-ны өдөр, {if(now.hour=>16){24-now.hour}else{now.hour}} цаг {now.minute} минут"
 
 app = FastAPI()
 
