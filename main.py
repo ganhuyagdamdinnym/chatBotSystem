@@ -11,7 +11,9 @@ Base_url = "https://api.openweathermap.org/data/2.5/weather"
 with open("./data.json", "r", encoding="utf-8") as f:
     INTENTS = json.load(f)
 def now_time():
-    return datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+    now = datetime.datetime.now()
+    return f"{now.year} оны {now.month} сарын {now.day} өдөр {now.hour:02d}:{now.minute:02d}"
+
 
 app = FastAPI()
 
